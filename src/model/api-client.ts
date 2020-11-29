@@ -11,7 +11,7 @@ class APIClient {
     return APIClient.client
   }
 
-  private instance?: AxiosInstance
+  private instance: AxiosInstance
 
   constructor() {
     this.instance = axios.create({
