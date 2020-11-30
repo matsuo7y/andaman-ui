@@ -3,11 +3,3 @@ export interface OffsetPaging {
   count: number
   offset: number
 }
-
-export function newOffsetPaging(init: any): OffsetPaging {
-  return {
-    all: init.all,
-    count: init.count,
-    offset: init.offset,
-  }
-}

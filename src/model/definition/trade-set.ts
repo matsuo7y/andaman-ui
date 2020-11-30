@@ -6,12 +6,3 @@ export interface TradeSet {
   type: TradeSetType
   createdAt: number
 }
-
-export function newTradeSet(init: any): TradeSet {
-  return {
-    name: init.name,
-    version: init.version,
-    type: init.type,
-    createdAt: init.createdAt,
-  }
-}

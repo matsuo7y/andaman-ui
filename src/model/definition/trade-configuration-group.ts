@@ -11,12 +11,3 @@ export interface TradeConfigurationGroup {
   tradeDirection: TradeDirection,
   tradeAlgorithmType: TradeAlgorithmType,
 }
-
-export function newTradeConfigurationGroup(init: any): TradeConfigurationGroup {
-  return {
-    tradePair: init.tradePair,
-    timezone: init.timezone,
-    tradeDirection: init.tradeDirection,
-    tradeAlgorithmType: init.tradeAlgorithmType,
-  }
-}
