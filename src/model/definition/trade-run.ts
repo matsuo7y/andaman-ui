@@ -4,7 +4,7 @@ import {
 } from '../enums'
 
 export interface TradeRun {
-  tradeRunID: number
+  tradeRunId: number
   type: TradeRunType
   state: TradeRunState
   createdAt: number

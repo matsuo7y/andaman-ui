@@ -1,5 +1,6 @@
 export type { OrdersResponse } from './orders-response'
 export type { SuccessResponse } from './success-response'
+export type { TradeConfigurationGroupSummariesResponse } from './trade-configuration-group-summaries-response'
 export type { TradeCountProfitsResponse } from './trade-count-profits-response'
 export type { TradeRunDetailsResponse } from './trade-run-details-response'
 export type { TradeSetDetailResponse } from './trade-set-detail-response'

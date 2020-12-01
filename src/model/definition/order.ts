@@ -4,7 +4,7 @@ import {
 } from '../enums'
 
 export interface Order {
-  tradeRunID: number
+  tradeRunId: number
 	orderID: number
 	units: number
 	tradeDirection: TradeDirection
