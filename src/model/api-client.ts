@@ -34,7 +34,7 @@ export type ResponseHandler<T> = {
   onError: OnError,
 }
 
-export class APIClient {
+export default class APIClient {
   static client?: APIClient
 
   static get shared(): APIClient {
