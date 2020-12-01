@@ -1,4 +1,5 @@
 import React from 'react'
+import { Button } from 'react-bootstrap'
 import { TradeRunType, TradeSetType } from '../model/enums'
 import { ButtonSelector } from './util'
 
@@ -35,6 +36,14 @@ export class TopSelector extends React.Component<TopSelectorProps, TopSelectorSt
         initOption={TopOption.Show}
         onSelected = {this.onTopOptionSelected}
       />
+    )
+  }
+
+  private confirmButton() {
+    return (
+      <div className="d-flex justify-content-center">
+        <Button className="m-2" variant="secondary" onClick={() => {}}>confirm</Button>
+      </div>
     )
   }
 
@@ -76,8 +85,8 @@ export class TopSelector extends React.Component<TopSelectorProps, TopSelectorSt
       <div>
         {this.topSelector}
         {this.detailSelector(this.state.topOption)}
+        {this.confirmButton()}
       </div>
     )
   }
 }
-
