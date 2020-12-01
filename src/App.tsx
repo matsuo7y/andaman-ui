@@ -1,11 +1,13 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Navbar from './component/Navbar'
+import { Navbar } from './component/util/Navbar'
+import { TopSelector } from './component/TopSelector'
 
 const App = () =>
   (
     <div>
-      <Navbar></Navbar>
+      <Navbar />
+      <TopSelector />
     </div>
   )
 
