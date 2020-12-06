@@ -7,10 +7,6 @@ type ButtonSelectorProps = {
   onSelected: (option: any) => void,
 }
 
-type ButtonSelectorState = {
-  selectedOption: string,
-}
-
 export const ButtonSelector = (props: ButtonSelectorProps) => {
   const [selectedOption, setSelectedOption] = useState(props.initOption)
 
