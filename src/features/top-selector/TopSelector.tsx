@@ -47,7 +47,6 @@ const TopSelector = () => {
   const detailSelector = (option: TopOption) => {
     switch (option) {
       case TopOption.Show:
-        console.log(showOption.type)
         return (
           <ButtonSelector
             key='show'
@@ -58,7 +57,6 @@ const TopSelector = () => {
         )
     
       default:
-        console.log(runOption.type)
         return (
           <ButtonSelector
             key='run'
