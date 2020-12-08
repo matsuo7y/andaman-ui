@@ -1,46 +1,39 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+
+import { RootState } from 'app/store'
+import {
+  setTopOption,
+  setShowOption,
+  setRunOption,
+  TopOption,
+} from 'features/top-selector/top-selector-slice'
 import { Button } from 'react-bootstrap'
-import { TradeRunType, TradeSetType } from '../model/enums'
-import { ButtonSelector } from '../component'
+import { TradeRunType, TradeSetType } from 'model/enums'
+import ButtonSelector from 'component/ButtonSelector'
 
-type TopSelectorProps = {}
-type TopSelectorState = {
-  topOption: TopOption,
-  showOption?: ShowOption,
-  runOption?: RunOption,
-}
+const TopSelector = () => {
+  const dispatch = useDispatch()
 
-enum TopOption {
-  Show = 'show',
-  Run = 'run',
-}
-
-type ShowOption = {
-  type: TradeRunType,
-}
-
-type RunOption = {
-  type: TradeSetType,
-}
-
-export const TopSelector = (props: TopSelectorProps) => {
-  const [topOption, setTopOption] = useState(TopOption.Show)
-  const [showOption, setShowOption] = useState<ShowOption>({type: TradeRunType.OandaTrade})
-  const [runOption, setRunOption] = useState<RunOption>({type: TradeSetType.Trade})
+  const {
+    topOption,
+    showOption,
+    runOption,
+  } = useSelector((state: RootState) => state.topSelector)
 
   const onTopOptionSelected = (option: string) =>
-    setTopOption(option as TopOption)
+    dispatch(setTopOption(option))
 
   const onShowOptionSelected = (option: string) =>
-    setShowOption({type: option as TradeRunType})
+    dispatch(setShowOption({type: option as TradeRunType}))
 
   const onRunOptionSelected = (option: string) =>
-    setRunOption({type: option as TradeSetType})
+    dispatch(setRunOption({type: option as TradeSetType}))
   
   const topSelector = (
     <ButtonSelector
       options={[TopOption.Show, TopOption.Run]}
-      initOption={TopOption.Show}
+      initOption={topOption}
       onSelected = {onTopOptionSelected}
     />
   )
@@ -54,6 +47,7 @@ export const TopSelector = (props: TopSelectorProps) => {
   const detailSelector = (option: TopOption) => {
     switch (option) {
       case TopOption.Show:
+        console.log(showOption.type)
         return (
           <ButtonSelector
             key='show'
@@ -64,6 +58,7 @@ export const TopSelector = (props: TopSelectorProps) => {
         )
     
       default:
+        console.log(runOption.type)
         return (
           <ButtonSelector
             key='run'
@@ -75,7 +70,6 @@ export const TopSelector = (props: TopSelectorProps) => {
     }
   }
 
-  
   return (
     <div>
       {topSelector}
@@ -84,3 +78,5 @@ export const TopSelector = (props: TopSelectorProps) => {
     </div>
   )
 }
+
+export default TopSelector

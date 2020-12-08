@@ -7,7 +7,7 @@ type ButtonSelectorProps = {
   onSelected: (option: any) => void,
 }
 
-export const ButtonSelector = (props: ButtonSelectorProps) => {
+const ButtonSelector = (props: ButtonSelectorProps) => {
   const [selectedOption, setSelectedOption] = useState(props.initOption)
 
   const buttonVariant = (isSelected: boolean) => isSelected ? "info" : "light"
@@ -37,3 +37,5 @@ export const ButtonSelector = (props: ButtonSelectorProps) => {
     </div>
   )
 }
+
+export default ButtonSelector

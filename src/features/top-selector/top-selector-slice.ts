@@ -10,16 +10,16 @@ type TopSelectorState = {
   runOption: RunOption,
 }
 
-enum TopOption {
+export enum TopOption {
   Show = 'show',
   Run = 'run',
 }
 
-type ShowOption = {
+export type ShowOption = {
   type: TradeRunType,
 }
 
-type RunOption = {
+export type RunOption = {
   type: TradeSetType,
 }
 
@@ -40,11 +40,11 @@ const topSelector = createSlice({
     setTopOption(state, { payload }: PayloadAction<string>) {
       state.topOption = payload as TopOption
     },
-    setShowOption(state, { payload }: PayloadAction<string>) {
-      state.showOption.type = payload as TradeRunType
+    setShowOption(state, { payload }: PayloadAction<ShowOption>) {
+      state.showOption = payload
     },
-    setRunOption(state, { payload }: PayloadAction<string>) {
-      state.runOption.type = payload as TradeSetType
+    setRunOption(state, { payload }: PayloadAction<RunOption>) {
+      state.runOption = payload
     },
   }
 })
