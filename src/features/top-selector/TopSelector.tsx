@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import { RootState } from 'app/store'
 import {
@@ -9,7 +10,7 @@ import {
   TopOption,
 } from 'features/top-selector/top-selector-slice'
 import { Button } from 'react-bootstrap'
-import { TradeRunType, TradeSetType } from 'model/enums'
+import { TradeRunType, TradeSetType, Links } from 'model/enums'
 import ButtonSelector from 'component/ButtonSelector'
 
 const TopSelector = () => {
@@ -38,9 +39,20 @@ const TopSelector = () => {
     />
   )
 
+  const confirmLink = (option: TopOption) => {
+    switch (option) {
+    case TopOption.Show:
+      return Links.TradeRuns
+    default:
+      return Links.TradeSets
+    }
+  }
+
   const confirmButton = (
     <div className="d-flex justify-content-center">
-      <Button className="m-2" variant="secondary" onClick={() => {}}>confirm</Button>
+      <Link to={confirmLink(topOption)}>
+        <Button className="m-2" variant="secondary">confirm</Button>
+      </Link>
     </div>
   )
 

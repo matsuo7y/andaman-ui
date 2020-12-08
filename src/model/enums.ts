@@ -53,3 +53,10 @@ export enum OrderState {
   Open = "open",
   Closed = "closed"
 }
+
+// Links
+export enum Links {
+  TopSelector = '/top-selector',
+  TradeRuns = '/trade-runs',
+  TradeSets = '/trade-sets',
+}
