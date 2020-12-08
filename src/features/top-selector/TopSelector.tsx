@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
 
 import { RootState } from 'app/store'
 import {
@@ -9,7 +10,6 @@ import {
   setRunOption,
   TopOption,
 } from 'features/top-selector/top-selector-slice'
-import { Button } from 'react-bootstrap'
 import { TradeRunType, TradeSetType, Links } from 'model/enums'
 import ButtonSelector from 'component/ButtonSelector'
 
