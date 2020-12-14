@@ -2,7 +2,14 @@ import React from 'react'
 import { Pagination } from 'react-bootstrap'
 import { OffsetPaging } from 'model/definition'
 
-type PaginatorProps = OffsetPaging
+export type CountOffset = {
+  count: number
+  offset: number
+}
+
+type PaginatorProps = OffsetPaging & {
+  onMove: (co: CountOffset) => void
+}
 
 const Paginator = (props: PaginatorProps) => {
   const overflow = props.all % props.count === 0 ? 0 : 1
@@ -20,17 +27,23 @@ const Paginator = (props: PaginatorProps) => {
   const current = condForCurrent ? <Pagination.Item active>{currentPage}</Pagination.Item> : null
   const nextEllipsis = condForNextEllipsis ? <Pagination.Ellipsis /> : null
 
+  const { all, count, offset, onMove } = props
+  const onMoveToFirst = () => onMove({ count, offset: 0 })
+  const onMoveToPrev = () => onMove({ count, offset: offset - count >= 0 ? offset - count : 0 })
+  const onMoveToNext = () => onMove({ count, offset: offset + count < all ? offset + count : all - count })
+  const onMoveToLast = () => onMove({ count, offset: all - count })
+
   return (
     <Pagination>
-      <Pagination.First onClick={() => {}} />
-      <Pagination.Prev onClick={() => {}} />
+      <Pagination.First onClick={onMoveToFirst} />
+      <Pagination.Prev onClick={onMoveToPrev} />
       {first}
       {prevEllipsis}
       {current}
       {nextEllipsis}
       {last}
-      <Pagination.Next onClick={() => {}} />
-      <Pagination.Last onClick={() => {}} />
+      <Pagination.Next onClick={onMoveToNext} />
+      <Pagination.Last onClick={onMoveToLast} />
     </Pagination>
   )
 }

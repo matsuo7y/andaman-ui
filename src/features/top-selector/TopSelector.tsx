@@ -14,9 +14,7 @@ const TopSelector = () => {
   const { topOption, showOption, runOption } = useSelector((state: RootState) => state.topSelector)
 
   const onTopOptionSelected = (option: string) => dispatch(setTopOption(option))
-
   const onShowOptionSelected = (option: string) => dispatch(setShowOption({ type: option as TradeRunType }))
-
   const onRunOptionSelected = (option: string) => dispatch(setRunOption({ type: option as TradeSetType }))
 
   const topSelector = (
