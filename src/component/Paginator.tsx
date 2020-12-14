@@ -6,8 +6,8 @@ type PaginatorProps = OffsetPaging
 
 const Paginator = (props: PaginatorProps) => {
   const overflow = props.all % props.count === 0 ? 0 : 1
-  const numPages = props.all / props.count + overflow
-  const currentPage = props.offset / props.count + 1
+  const numPages = Math.floor(props.all / props.count) + overflow
+  const currentPage = Math.floor(props.offset / props.count) + 1
 
   const first = numPages > 0 && currentPage !== 1 ? <Pagination.Item>1</Pagination.Item> : null
   const last = numPages > 1 && currentPage !== numPages ? <Pagination.Item>{numPages}</Pagination.Item> : null
@@ -17,7 +17,7 @@ const Paginator = (props: PaginatorProps) => {
   const condForNextEllipsis = numPages > 2 && currentPage < numPages - 1
 
   const prevEllipsis = condForPrevEllipsis ? <Pagination.Ellipsis /> : null
-  const current = condForCurrent ? <Pagination.Item>{currentPage}</Pagination.Item> : null
+  const current = condForCurrent ? <Pagination.Item active>{currentPage}</Pagination.Item> : null
   const nextEllipsis = condForNextEllipsis ? <Pagination.Ellipsis /> : null
 
   return (
