@@ -2,7 +2,7 @@ import React from 'react'
 import { Pagination } from 'react-bootstrap'
 import { OffsetPaging } from 'model/definition'
 
-type PaginatorProps = OffsetPaging & {
+export type PaginatorProps = OffsetPaging & {
   onMove: (offset: number) => void
 }
 

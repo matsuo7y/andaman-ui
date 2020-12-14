@@ -1,19 +1,22 @@
 import React from 'react'
-import { Card } from 'react-bootstrap'
+import { Container, Row, Col, Card } from 'react-bootstrap'
 
-type CardComponentProps<T extends object> = {
+export type CardComponentProps<T extends object> = {
+  width: string
+  color?: string
+  margin?: string
   title?: string
   subtitle?: string
   list: T
-  extra?: React.FC
+  extra?: JSX.Element
 }
 
 const CardComponent = <T extends object>(props: CardComponentProps<T>) => {
   const row = (key: any, value: any) => (
-    <tr>
-      <th scope="row">{key}</th>
-      <td>{value}</td>
-    </tr>
+    <Row>
+      <Col>{key}</Col>
+      <Col>{value}</Col>
+    </Row>
   )
 
   const rows = () => {
@@ -24,18 +27,19 @@ const CardComponent = <T extends object>(props: CardComponentProps<T>) => {
     return rowList
   }
 
+  const style = { width: props.width }
+  const className = `${props.color ?? 'bg-light'} ${props.margin ?? ''}`
+
   const title = props.title ? <Card.Title>{props.title}</Card.Title> : null
-  const subtitle = props.subtitle ? <Card.Subtitle>{props.subtitle}</Card.Subtitle> : null
+  const subtitle = props.subtitle ? <Card.Subtitle className="mb-2 text-muted">{props.subtitle}</Card.Subtitle> : null
 
   return (
-    <Card>
+    <Card style={style} className={className}>
       <Card.Body>
         {title}
         {subtitle}
         <Card.Text>
-          <table className="table table-sm">
-            <tbody>{rows()}</tbody>
-          </table>
+          <Container>{rows()}</Container>
         </Card.Text>
         {props.extra ?? null}
       </Card.Body>

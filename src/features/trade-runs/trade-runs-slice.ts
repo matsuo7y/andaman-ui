@@ -5,8 +5,8 @@ import { OffsetPaging } from 'model/definition'
 type TradeRunsState = OffsetPaging & {}
 
 const initialTradeRunsState: TradeRunsState = {
-  all: 50,
-  count: 5,
+  all: 0,
+  count: 0,
   offset: 0
 }
 
