@@ -1,7 +1,4 @@
-import {
-  TradeRunDetail,
-  OffsetPaging,
-} from '../definition'
+import { TradeRunDetail, OffsetPaging } from '../definition'
 
 export interface TradeRunDetailsResponse {
   tradeRuns: [TradeRunDetail]

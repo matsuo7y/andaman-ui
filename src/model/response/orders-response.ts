@@ -1,7 +1,4 @@
-import {
-  Order,
-  OffsetPaging,
-} from "../definition";
+import { Order, OffsetPaging } from '../definition'
 
 export interface OrdersResponse {
   orders: [Order]

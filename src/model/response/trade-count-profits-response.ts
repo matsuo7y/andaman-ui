@@ -1,7 +1,4 @@
-import {
-  TradeConfigurationTradeCountProfit,
-  TradeCount
-} from "../definition";
+import { TradeConfigurationTradeCountProfit, TradeCount } from '../definition'
 
 export interface TradeCountProfitsResponse {
   tradeCount: TradeCount

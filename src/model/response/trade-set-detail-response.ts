@@ -1,4 +1,4 @@
-import { TradeSetDetail } from "../definition";
+import { TradeSetDetail } from '../definition'
 
 export interface TradeSetDetailResponse {
   tradeSet: TradeSetDetail

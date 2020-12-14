@@ -1,4 +1,4 @@
-import { TradeCountProfit } from "./trade-count-profit";
+import { TradeCountProfit } from './trade-count-profit'
 
 export interface TradeSummary {
   open: TradeCountProfit

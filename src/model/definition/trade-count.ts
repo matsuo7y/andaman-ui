@@ -6,6 +6,6 @@ export interface TradeCount {
 export function newTradeCount(init: any): TradeCount {
   return {
     positiveProfitCount: init.positiveProfitCount,
-    negativeProfitCount: init.negativeProfitCount,
+    negativeProfitCount: init.negativeProfitCount
   }
 }

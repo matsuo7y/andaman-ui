@@ -9,11 +9,11 @@ const Paginator = (props: PaginatorProps) => {
   const numPages = props.all / props.count + overflow
   const currentPage = props.offset / props.count + 1
 
-  const first = numPages > 0 ? <Pagination.Item>1</Pagination.Item> : null
-  const last = numPages > 1 ? <Pagination.Item>{numPages}</Pagination.Item> : null
+  const first = numPages > 0 && currentPage !== 1 ? <Pagination.Item>1</Pagination.Item> : null
+  const last = numPages > 1 && currentPage !== numPages ? <Pagination.Item>{numPages}</Pagination.Item> : null
 
   const condForPrevEllipsis = numPages > 2 && currentPage > 2
-  const condForCurrent = numPages > 2 && currentPage > 1 && currentPage < numPages
+  const condForCurrent = numPages > 0
   const condForNextEllipsis = numPages > 2 && currentPage < numPages - 1
 
   const prevEllipsis = condForPrevEllipsis ? <Pagination.Ellipsis /> : null

@@ -12,7 +12,7 @@ import {
   TradeCountProfitsParam,
   TradeConfigurationGroupSummariesParam,
   AddTradeSetByPresetData,
-  CreateTradeData,
+  CreateTradeData
 } from './params'
 import {
   OrdersResponse,
@@ -23,15 +23,15 @@ import {
   TradeSetDetailResponse,
   TradeSetsResponse,
   TradeSummariesResponseA,
-  TradeSummariesResponseB,
+  TradeSummariesResponseB
 } from './response'
 
 export type OnSuccess<T> = (resp: T) => void
 export type OnError = (code: number, message: string) => void
 
 export type ResponseHandler<T> = {
-  onSuccess: OnSuccess<T>,
-  onError: OnError,
+  onSuccess: OnSuccess<T>
+  onError: OnError
 }
 
 export default class APIClient {
@@ -49,13 +49,13 @@ export default class APIClient {
   constructor() {
     this.instance = axios.create({
       baseURL: `${APIBaseURL}/api`,
-      headers: {'API-KEY': APIKey}
+      headers: { 'API-KEY': APIKey }
     })
   }
 
   private success<T>(handler: OnSuccess<T>): (resp: AxiosResponse) => void {
     return (resp) => {
-      const data = camelcaseKeys(resp.data, {deep: true}) as T
+      const data = camelcaseKeys(resp.data, { deep: true }) as T
       handler(data)
     }
   }
@@ -80,19 +80,15 @@ export default class APIClient {
       handler(result[0], result[1])
     }
   }
-  
+
   private get<T>(path: string, params: any, handler: ResponseHandler<T>) {
-    params = snakecaseKeys(params, {deep: true})
-    this.instance.get(path, {params: params})
-      .then(this.success(handler.onSuccess))
-      .catch(this.error(handler.onError))
+    params = snakecaseKeys(params, { deep: true })
+    this.instance.get(path, { params: params }).then(this.success(handler.onSuccess)).catch(this.error(handler.onError))
   }
 
   private post<T>(path: string, data: any, handler: ResponseHandler<T>) {
-    data = snakecaseKeys(data, {deep: true})
-    this.instance.post(path, {data: data})
-      .then(this.success(handler.onSuccess))
-      .catch(this.error(handler.onError))
+    data = snakecaseKeys(data, { deep: true })
+    this.instance.post(path, { data: data }).then(this.success(handler.onSuccess)).catch(this.error(handler.onError))
   }
 
   public tradeRuns(params: TradeRunsParam, handler: ResponseHandler<TradeRunDetailsResponse>) {
@@ -125,7 +121,8 @@ export default class APIClient {
 
   public tradeConfigurationGroupSummaries(
     params: TradeConfigurationGroupSummariesParam,
-    handler: ResponseHandler<TradeConfigurationGroupSummariesResponse>) {
+    handler: ResponseHandler<TradeConfigurationGroupSummariesResponse>
+  ) {
     this.get('/trade_configuration_group_summaries', params, handler)
   }
 

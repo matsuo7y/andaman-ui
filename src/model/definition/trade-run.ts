@@ -1,7 +1,4 @@
-import {
-  TradeRunType,
-  TradeRunState,
-} from '../enums'
+import { TradeRunType, TradeRunState } from '../enums'
 
 export interface TradeRun {
   tradeRunId: number

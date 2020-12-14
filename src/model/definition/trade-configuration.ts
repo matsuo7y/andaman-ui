@@ -1,9 +1,6 @@
-import {
-  TradePair,
-  Timezone,
-} from '../enums'
+import { TradePair, Timezone } from '../enums'
 
 export interface TradeConfiguration {
-  tradePair: TradePair,
-  timezone: Timezone,
+  tradePair: TradePair
+  timezone: Timezone
 }

@@ -1,5 +1,5 @@
-import { TradeConfigurationDetail } from "./trade-configuration-detail";
-import { TradeSummary } from './trade-summary' 
+import { TradeConfigurationDetail } from './trade-configuration-detail'
+import { TradeSummary } from './trade-summary'
 
 interface base {
   tradeConfiguration: TradeConfigurationDetail

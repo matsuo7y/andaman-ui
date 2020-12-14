@@ -1,5 +1,5 @@
-import { TradeConfigurationDetail } from "./trade-configuration-detail";
-import { TradeCountProfit } from "./trade-count-profit";
+import { TradeConfigurationDetail } from './trade-configuration-detail'
+import { TradeCountProfit } from './trade-count-profit'
 
 interface base {
   tradeConfiguration: TradeConfigurationDetail

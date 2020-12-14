@@ -1,7 +1,4 @@
-import {
-  TradeAlgorithmType,
-  TradeDirection,
-} from '../enums'
+import { TradeAlgorithmType, TradeDirection } from '../enums'
 
 export interface TradeAlgorithm {
   type: TradeAlgorithmType

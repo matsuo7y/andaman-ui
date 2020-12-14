@@ -1,4 +1,4 @@
-import { TradeConfigurationTradeSummary } from "../definition";
+import { TradeConfigurationTradeSummary } from '../definition'
 
 export interface TradeSummariesResponseB {
   unrealizedProfit: number

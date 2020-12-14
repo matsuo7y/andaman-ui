@@ -1,7 +1,4 @@
-import { 
-  TradeSet,
-  OffsetPaging,
-} from '../definition'
+import { TradeSet, OffsetPaging } from '../definition'
 
 export interface TradeSetsResponse {
   tradeSets: [TradeSet]

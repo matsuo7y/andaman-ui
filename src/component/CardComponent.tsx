@@ -2,10 +2,10 @@ import React from 'react'
 import { Card } from 'react-bootstrap'
 
 type CardComponentProps<T extends object> = {
-  title?: string,
-  subtitle?: string,
-  list: T,
-  extra?: React.FC,
+  title?: string
+  subtitle?: string
+  list: T
+  extra?: React.FC
 }
 
 const CardComponent = <T extends object>(props: CardComponentProps<T>) => {

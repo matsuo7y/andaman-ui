@@ -1,2 +1,2 @@
-export const APIBaseURL = ""
-export const APIKey = ""
+export const APIBaseURL = ''
+export const APIKey = ''
