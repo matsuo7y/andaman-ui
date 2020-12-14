@@ -2,13 +2,8 @@ import React from 'react'
 import { Pagination } from 'react-bootstrap'
 import { OffsetPaging } from 'model/definition'
 
-export type CountOffset = {
-  count: number
-  offset: number
-}
-
 type PaginatorProps = OffsetPaging & {
-  onMove: (co: CountOffset) => void
+  onMove: (offset: number) => void
 }
 
 const Paginator = (props: PaginatorProps) => {
@@ -28,10 +23,10 @@ const Paginator = (props: PaginatorProps) => {
   const nextEllipsis = condForNextEllipsis ? <Pagination.Ellipsis /> : null
 
   const { all, count, offset, onMove } = props
-  const onMoveToFirst = () => onMove({ count, offset: 0 })
-  const onMoveToPrev = () => onMove({ count, offset: offset - count >= 0 ? offset - count : 0 })
-  const onMoveToNext = () => onMove({ count, offset: offset + count < all ? offset + count : all - count })
-  const onMoveToLast = () => onMove({ count, offset: all - count })
+  const onMoveToFirst = () => onMove(0)
+  const onMoveToPrev = () => onMove(offset - count >= 0 ? offset - count : 0)
+  const onMoveToNext = () => onMove(offset + count < all ? offset + count : all - count)
+  const onMoveToLast = () => onMove(all - count)
 
   return (
     <Pagination>
