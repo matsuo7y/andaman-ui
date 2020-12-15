@@ -1,6 +1,6 @@
 import { TradeConfigurationGroupSummary, OffsetPaging } from '../definition'
 
 export interface TradeConfigurationGroupSummariesResponse {
-  groupSummaries: [TradeConfigurationGroupSummary]
+  groupSummaries: TradeConfigurationGroupSummary[]
   paging: OffsetPaging
 }

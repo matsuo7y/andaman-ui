@@ -1,7 +1,7 @@
 import { Order, OffsetPaging } from '../definition'
 
 export interface OrdersResponse {
-  orders: [Order]
+  orders: Order[]
   totalProfit: number
   paging: OffsetPaging
 }

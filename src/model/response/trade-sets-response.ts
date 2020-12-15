@@ -1,6 +1,6 @@
 import { TradeSet, OffsetPaging } from '../definition'
 
 export interface TradeSetsResponse {
-  tradeSets: [TradeSet]
+  tradeSets: TradeSet[]
   paging: OffsetPaging
 }
