@@ -75,7 +75,7 @@ export default class APIClient {
           result = { statusCode: error.response.status, message: data }
         }
       } else if (error.request) {
-        result = { statusCode: 500, message: error.request }
+        result = { statusCode: 500, message: 'cannot do the request' }
       } else {
         result = { statusCode: 500, message: error.message }
       }
@@ -87,7 +87,7 @@ export default class APIClient {
   private get<T>(path: string, params: any, handler: ResponseHandler<T>) {
     params = snakecaseKeys(params, { deep: true })
     this.instance
-      .get(path, { params: params })
+      .get(path, { params })
       .then(this.success(handler.onSuccess, handler.customizer))
       .catch(this.error(handler.onError))
   }
@@ -95,7 +95,7 @@ export default class APIClient {
   private post<T>(path: string, data: any, handler: ResponseHandler<T>) {
     data = snakecaseKeys(data, { deep: true })
     this.instance
-      .post(path, { data: data })
+      .post(path, { data })
       .then(this.success(handler.onSuccess, handler.customizer))
       .catch(this.error(handler.onError))
   }

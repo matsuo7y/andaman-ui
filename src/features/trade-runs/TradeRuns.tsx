@@ -62,7 +62,7 @@ const TradeRuns = () => {
   const onMove = (offset: number) => fetch(count, offset)
 
   const requestProps: RequestProps = {
-    isError: error != undefined,
+    isError: error !== undefined,
     statusCode: error?.statusCode,
     message: error?.message
   }
