@@ -16,3 +16,7 @@ export type { TradeRun } from './trade-run'
 export type { TradeSetDetail } from './trade-set-detail'
 export type { TradeSet } from './trade-set'
 export type { TradeSummary } from './trade-summary'
+
+export { tradeRunDetailCustomizer } from './trade-run-detail'
+export { tradeRunCustomizer } from './trade-run'
+export { tradeSetCustomizer } from './trade-set'

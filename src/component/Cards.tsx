@@ -3,12 +3,12 @@ import React from 'react'
 import CardComponent, { CardComponentProps } from 'component/CardComponent'
 import Paginator, { PaginatorProps } from 'component/Paginator'
 
-export type CardsProps<T extends object> = {
-  cardProps: CardComponentProps<T>[]
+export type CardsProps = {
+  cardProps: CardComponentProps[]
   paginatorProps: PaginatorProps
 }
 
-const Cards = <T extends object>(props: CardsProps<T>) => {
+const Cards = (props: CardsProps) => {
   const cardComponents = props.cardProps.map((props) => (
     <CardComponent
       width={props.width}

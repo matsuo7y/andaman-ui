@@ -3,13 +3,13 @@ import React from 'react'
 import Request, { RequestProps } from 'component/Request'
 import Cards, { CardsProps } from 'component/Cards'
 
-export type RequestedCardsProps<T extends object> = {
+export type RequestedCardsProps = {
   requesting: boolean
   requestProps: RequestProps
-  cardsProps?: CardsProps<T>
+  cardsProps: CardsProps
 }
 
-const RequestedCards = <T extends object>(props: RequestedCardsProps<T>) => {
+const RequestedCards = (props: RequestedCardsProps) => {
   const { isError, statusCode, message } = props.requestProps
   if (props.requesting || isError) {
     return <Request isError={isError} statusCode={statusCode} message={message} />

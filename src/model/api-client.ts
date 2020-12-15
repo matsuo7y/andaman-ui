@@ -2,6 +2,7 @@ import axios, { AxiosInstance, AxiosResponse } from 'axios'
 import camelcaseKeys from 'camelcase-keys'
 import snakecaseKeys from 'snakecase-keys'
 import { APIBaseURL, APIKey } from './const-local'
+import { Customizer } from 'model/extension'
 import {
   TradeRunsParam,
   TradeSetsParam,
@@ -15,6 +16,7 @@ import {
   CreateTradeData
 } from './params'
 import {
+  ErrorResponse,
   OrdersResponse,
   SuccessResponse,
   TradeConfigurationGroupSummariesResponse,
@@ -27,11 +29,12 @@ import {
 } from './response'
 
 export type OnSuccess<T> = (resp: T) => void
-export type OnError = (code: number, message: string) => void
+export type OnError = (error: ErrorResponse) => void
 
 export type ResponseHandler<T> = {
   onSuccess: OnSuccess<T>
   onError: OnError
+  customizer: Customizer<T>
 }
 
 export default class APIClient {
@@ -53,42 +56,48 @@ export default class APIClient {
     })
   }
 
-  private success<T>(handler: OnSuccess<T>): (resp: AxiosResponse) => void {
+  private success<T>(handler: OnSuccess<T>, customizer: Customizer<T>): (resp: AxiosResponse) => void {
     return (resp) => {
       const data = camelcaseKeys(resp.data, { deep: true }) as T
-      handler(data)
+      handler(customizer(data))
     }
   }
 
   private error(handler: OnError): (error: any) => void {
     return (error) => {
-      let result: [number, string]
+      let result: ErrorResponse
 
       if (error.response) {
         const data = error.response.data
         if (data.code && data.message) {
-          result = [data.code, data.message]
+          result = { statusCode: data.code, message: data.message }
         } else {
-          result = [error.response.status, data]
+          result = { statusCode: error.response.status, message: data }
         }
       } else if (error.request) {
-        result = [500, error.request]
+        result = { statusCode: 500, message: error.request }
       } else {
-        result = [500, error.message]
+        result = { statusCode: 500, message: error.message }
       }
 
-      handler(result[0], result[1])
+      handler(result)
     }
   }
 
   private get<T>(path: string, params: any, handler: ResponseHandler<T>) {
     params = snakecaseKeys(params, { deep: true })
-    this.instance.get(path, { params: params }).then(this.success(handler.onSuccess)).catch(this.error(handler.onError))
+    this.instance
+      .get(path, { params: params })
+      .then(this.success(handler.onSuccess, handler.customizer))
+      .catch(this.error(handler.onError))
   }
 
   private post<T>(path: string, data: any, handler: ResponseHandler<T>) {
     data = snakecaseKeys(data, { deep: true })
-    this.instance.post(path, { data: data }).then(this.success(handler.onSuccess)).catch(this.error(handler.onError))
+    this.instance
+      .post(path, { data: data })
+      .then(this.success(handler.onSuccess, handler.customizer))
+      .catch(this.error(handler.onError))
   }
 
   public tradeRuns(params: TradeRunsParam, handler: ResponseHandler<TradeRunDetailsResponse>) {

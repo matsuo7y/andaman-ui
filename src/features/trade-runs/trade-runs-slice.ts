@@ -1,25 +1,39 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { OffsetPaging } from 'model/definition'
+import { TradeRunDetailsResponse, ErrorResponse } from 'model/response'
 
-type TradeRunsState = OffsetPaging & {}
+type TradeRunsState = {
+  response: TradeRunDetailsResponse
+  error?: ErrorResponse
+  fetched: boolean
+}
 
 const initialTradeRunsState: TradeRunsState = {
-  all: 0,
-  count: 0,
-  offset: 0
+  response: {
+    tradeRuns: [],
+    paging: {
+      all: 0,
+      count: 10,
+      offset: 0
+    }
+  },
+  fetched: false
 }
 
 const tradeRuns = createSlice({
   name: 'trade-runs',
   initialState: initialTradeRunsState,
   reducers: {
-    setCountOffset(state, { payload }: PayloadAction<number>) {
-      state.offset = payload
+    setResponse(state, { payload }: PayloadAction<TradeRunDetailsResponse>) {
+      state.response = payload
+      state.fetched = true
+    },
+    setError(state, { payload }: PayloadAction<ErrorResponse>) {
+      state.error = payload
     }
   }
 })
 
-export const { setCountOffset } = tradeRuns.actions
+export const { setResponse, setError } = tradeRuns.actions
 
 export default tradeRuns.reducer

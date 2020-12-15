@@ -1,17 +1,17 @@
 import React from 'react'
 import { Container, Row, Col, Card } from 'react-bootstrap'
 
-export type CardComponentProps<T extends object> = {
+export type CardComponentProps = {
   width: string
   color?: string
   margin?: string
   title?: string
   subtitle?: string
-  list: T
+  list: any
   extra?: JSX.Element
 }
 
-const CardComponent = <T extends object>(props: CardComponentProps<T>) => {
+const CardComponent = (props: CardComponentProps) => {
   const row = (key: any, value: any) => (
     <Row>
       <Col>{key}</Col>
